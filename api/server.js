@@ -1,9 +1,7 @@
 const express = require("express");
-
-const db = require("../data/dbConfig.js");
-
 const server = express();
-
+// const db = require("../data/dbConfig.js");
+const Account = require('./account-model')
 server.use(express.json());
 
 server.get('/', (req, res) => {
@@ -17,7 +15,7 @@ server.get('/', (req, res) => {
 });
 
 server.get('/:id', (req, res) => {
-  Account.get(req.params.id)
+  Account.getById(req.params.id)
     .then(action => {
       if(action) {
         res.status(200).json(action)
